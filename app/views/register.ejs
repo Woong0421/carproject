@@ -1,57 +1,79 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>소방 방지 시스템</title>
-    <link rel='stylesheet' href='/stylesheets/main.css' />
-    <script src="https://kit.fontawesome.com/354885cafc.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/styles/login.css">
-</head>
-<body>
-    <nav>
-        <div class="container">
-            <div class="title">
-                <i class="fab fa-pied-piper-square"></i>
-                <a href="">소방 방지 시스템</a>
-            </div>
-            <div class="menu_bar">
-                <ul>
-                    <li><a href="">show</a></li>
-                    <li><a href="">test</a></li>
-                    <li><a href="/login">login</a></li>
-                    <li><a href="/register">register</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<!DOCTYPE HTML>
+<html>
+    <head>
 
-    <section>
-        <div class="container_form">
-            <form method="post">
-                <ul>
-                    <li>
-                        <label>아이디</label>
-                        <input type="text" name='id' required>
-                    </li>
-                    <li>
-                        <label>비밀번호</label>
-                        <input type="password" name="pw" required>
-                    </li>
-                    <li>
-                        <label>이름</label>
-                        <input type="text" name="name" required>
-                    </li>
-                    <li>
-                        <label>핸드폰 번호</label>
-                        <input type="text" name="phonenumber" required>
-                    </li>
-                </ul>
-                <input type="submit" value="회원가입">
-            </form>
-        </div>
-    </section>
-</body>
+        <meta charset="utf-8">
+        <title>회원가입</title>
+        <style type="text/css">
+            *{margin: 0; padding: 0;}
+            h1{
+                font-size: 50px;
+                color: gray;
+            }
+            input{
+                height: 50px;
+                width: 100px;
+            }
+            #fuckyou1{
+                color: green;
+            }
+            #fuckyou2{
+                color: red;
+            }
+        </style>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    </head>
+    <body>
+        <h1>회원가입</h1>
+        <form method="post">
+        <fieldset>
+            <ul>
+                <li>
+                    <label>이름</label>
+                    <input type="text" name="name" size="10" autofocus>
+                </li>
+                <li>
+                    <label>아이디</label>
+                    <input type="text" name="id" size="10" autofocus>
+                </li>
+                <li>
+                    <label>비밀번호</label>
+                    <input type="password"  name="pw" size="10" autofocus>     
+                </li>
+                <li>
+                    <label>비밀번호 확인</label>
+                    <input type="password" name="pw2" size="10" autofocus>
+                    <p id="check1">*비밀번호가 일치합니다</p>     
+                    <p id="check2">*비밀번호가 일치하지않습니다.</p>
+                </li>
+                <li>
+                    <label>전화번호</label>
+                    <input type="text"  name="phonenumber" size="10" autofocus>
+                </li>
+            </ul>
+        </fieldset>
+        <input type="submit" id="ok_btn" value="완료">
+        <script type="text/javascript">
+            $("#check1").hide();
+            $("#check2").hide();
+            $("#user_password2").keyup(function(){
+                var pwd1 = $("#user_password").val();
+                var pwd2 = $("#user_password2").val();
+                if(pwd1 != "" || pwd2 != ""){
+                    if(pwd1 == pwd2) {
+                        $("#check1").show();
+                        $("#check2").hide();
+                        $("#ok_btn").removeAttr("disabled");
+                    }else{
+                        $("#check1").hide();
+                        $("#check2").show();
+                        $("#ok_btn").attr("disabled", "disabled");
+                    }
+                }
+            });
+        </script>
+        </form>
+        <input type="button" value="취소" onclick="history.back();">
+    </body>
 </html>
-

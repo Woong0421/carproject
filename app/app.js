@@ -12,7 +12,11 @@ const http = require('http');
 var createError =require('http-errors');
 var logger = require('morgan');
 
-var retrofitRouter = require('./routes/retrofit');
+let remote = "stop";
+let msg = 0;
+let msh = 0;
+
+//var retrofitRouter = require('./routes/retrofit');
 //var indexRouter = require('./routes2/index');
 const { Console } = require('console');
 const router = express.Router();
@@ -39,7 +43,7 @@ app.use(session({
 
 // 정적 파일 설정 (미들웨어) 3
 app.use(express.static(path.join(__dirname,'/app/config')));
-app.use('/retrofit', retrofitRouter);
+//app.use('/retrofit', retrofitRouter);
 
 
 // ejs 설정 4
@@ -102,8 +106,8 @@ app.post('/login',(req,res)=>{
             req.session.name = data[0].name;
             req.session.id = data[0].id;
             req.session.pw = data[0].pw;
-            req.session.save(function(){ // 세션 스토어에 적용하는 작업               
-            });            
+            req.session.save(function () { // 세션 스토어에 적용하는 작업
+            });
         } 
 
         console.log(req.get('User-Agent'));
@@ -115,8 +119,11 @@ app.post('/login',(req,res)=>{
             });    
         }
         else {
-            res.render('text',{
-                name : data[0].name
+            res.render('camera', { // 정보전달
+                username: data[0].username,
+                userid: data[0].userid,
+                userpassword: data[0].userpassword,
+                is_logined: true
             });
         }
 });
@@ -189,6 +196,40 @@ app.post('/register',(req,res)=>{
         }   
     }); 
 });
+
+app.get('/temphum', (req, res) => {
+    console.log("temphum : " + msg+ " " + msh);
+    res.send("temp : " + msg + ", hum : " + msh);
+})
+
+app.get('/handle', (req, res) => {
+    res.send(remote);
+})
+
+app.get('/stop', (req, res) => {
+    remote = "stop";
+    res.end();
+})
+
+app.get('/go', (req, res) => {
+    remote = "go";
+    res.end();
+})
+
+app.get('/right', (req, res) => {
+    remote = "right";
+    res.end();
+})
+
+app.get('/back', (req, res) => {
+    remote = "back";
+    res.end();
+})
+
+app.get('/left', (req, res) => {
+    remote = "left";
+    res.end();
+})
 
 app.use(function(req,res,next){
     next(createError(404));

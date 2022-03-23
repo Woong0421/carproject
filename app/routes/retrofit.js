@@ -1,40 +1,53 @@
-var express = require('express');
-var router = express.Router();
-var bodyParser = require('body-parser');
-var request = require('request');
-var app = express();
-var http = require('http').createServer(app);
-var path = require('path');
+// var express = require('express');
+// var router = express.Router();
+// var bodyParser = require('body-parser');
+// var request = require('request');
+// var app = express();
+// var http = require('http').createServer(app);
+// var path = require('path');
 
-let remote = "stop";
-var port = 8888;
+// let remote = "stop";
+// var port = 8888;
 
 
-router.use(bodyParser.json());
-router.use(bodyParser.urlencoded({extended:false}));
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'ejs');
-app.set('views' ,__dirname + '/views');
-app.use(express.static(path.join(__dirname,'/views/camera')));
+// router.use(bodyParser.json());
+// router.use(bodyParser.urlencoded({extended:false}));
 
-app.get('/', function (req,res) {
-    console.log('Raspberry 서버 ');
-    res.send("stop");
-    });
+// app.engine('html', require('ejs').renderFile);
+// app.set('view engine', 'ejs');
+// app.set('views' ,__dirname + '/views');
+// app.use(express.static(path.join(__dirname,'/views/camera')));
 
-app.get('/get', function (req, res) {
-    console.log('GET 호출 / data : ' + req.query.data);
-    console.log('path : ' + req.path);
-    res.send('get success')
-});
+// app.get('/handle', (req, res) => {
+//     res.send(remote);
+// })
 
-router.post('/post', function (req, res) {
-    console.log('POST 호출 / data : ' + req.body.data);
-    console.log('path : ' + req.path);
-    res.send('post success') 
-});
-  app.listen(port, function () {
-    console.log('Smart Lamp Server app listening on port ' + port);
-    });
+// app.get('/stop', (req, res) => {
+//     remote = "stop";
+//     res.end();
+// })
 
-module.exports = router;
+// app.get('/go', (req, res) => {
+//     remote = "go";
+//     res.end();
+// })
+
+// app.get('/right', (req, res) => {
+//     remote = "right";
+//     res.end();
+// })
+
+// app.get('/back', (req, res) => {
+//     remote = "back";
+//     res.end();
+// })
+
+// app.get('/left', (req, res) => {
+//     remote = "left";
+//     res.end();
+// })
+// app.listen(port, function () {
+//     console.log('Smart Lamp Server app listening on port ' + port);
+//     });
+
+// module.exports = router;
