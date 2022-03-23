@@ -1,9 +1,9 @@
-var express = require("express");
-var bodyParser = require("body-parser");
-var app = require("express");
-var router = express.Router();
-var http = require('http').createServer(app);
-var path = require('path');
+// var express = require("express");
+// var bodyParser = require("body-parser");
+// var app = require("express");
+// var router = express.Router();
+// var http = require('http').createServer(app);
+// var path = require('path');
 
 // var app = express();
 // var port = 8888;
