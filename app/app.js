@@ -13,7 +13,7 @@ var createError =require('http-errors');
 var logger = require('morgan');
 
 var retrofitRouter = require('./routes/retrofit');
-var indexRouter = require('./routes2/index');
+//var indexRouter = require('./routes2/index');
 const { Console } = require('console');
 const router = express.Router();
 
@@ -139,7 +139,6 @@ app.get('/logout',(req,res)=>{
     }
     else {
         res.render('logout',{
-           
         });
     }
 });
@@ -173,8 +172,7 @@ app.post('/register',(req,res)=>{
                 });    
             }
             else {
-                res.render('register2',{
-                    
+                res.render('register2',{                    
                 });
             }
          
