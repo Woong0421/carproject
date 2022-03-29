@@ -93,7 +93,7 @@ app.post('/login',(req,res)=>{
     if(data.length===0){
             resultCode = 204;
             message = '존재하지 않는 계정입니다!';
-          }else if(pw != data[0].pw){
+        }else if(pw != data[0].pw){
             resultCode = 204;
             message = '비밀번호가 틀렸습니다!';
         }
@@ -120,9 +120,9 @@ app.post('/login',(req,res)=>{
         }
         else {
             res.render('camera', { // 정보전달
-                username: data[0].username,
-                userid: data[0].userid,
-                userpassword: data[0].userpassword,
+                // name: data[0].name,
+                id: data[0].id,
+                pw: data[0].pw,
                 is_logined: true
             });
         }
